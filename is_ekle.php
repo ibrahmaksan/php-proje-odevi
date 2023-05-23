@@ -3,21 +3,23 @@
 
 require_once "config.php";
 
-if(isset($_POST["ad"])){
+if(isset($_POST["ad"])){ // işin özellikleri form üzerinden çekilecek.
 
     $form_ad = $_POST["ad"];
     $form_tecrube =  $_POST["tecrube"];
     $form_kategori =  $_POST["kategori"];
     $form_konum = $_POST["konum"];
+    $form_telefon = $_POST["telefon"];
 
-    $isler = mysqli_query($db, "INSERT INTO `isler` (`name`,`tecrübe`,`kategori`,`konum`) VALUES ('".$form_ad."','".$form_tecrube."','".$form_kategori."','".$form_konum."')");
+    // insert into ile verilerimizi veritabanına kaydedeceğiz.
+    $isler = mysqli_query($db, "INSERT INTO `isler` (`name`,`tecrübe`,`kategori`,`konum`,`telefon`) VALUES ('".$form_ad."','".$form_tecrube."','".$form_kategori."','".$form_konum."','".$form_telefon."')");
     
-    if(mysqli_errno($db) != 0){
-
-        echo "Kayıt sırasında bir hata meydana geldi.";
+    if(mysqli_errno($db) != 0){ // kayıtta sorun çıkarsa çıkılacak.
+        header("Location: isler.php");
+        exit();
     }
 
-    header("Location: isler.php");
+    header("Location: isler.php"); // is eklemesi başarılı ise yeniden isler sayfasına dönecek.
 }
 
 
@@ -75,6 +77,7 @@ echo <<<EOF
             Tecrübe : <input type = "text" name = "tecrube"><br><br>
             Kategori: <input type = "text" name = "kategori"><br><br>
             Konum : <input type = "text" name = "konum"><br><br>
+            Telefon : <input type = "text" name = "telefon"><br><br>
             <button type = "submit">Ekle</button>
         </form>
     </div>

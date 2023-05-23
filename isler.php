@@ -34,6 +34,15 @@
             opacity: 0.7;
             border: solid black 3px;
         }
+        .cik{
+            background-color: lightblue;
+            width: 100 px;
+            height: 50px;
+            color: yellow;
+            border: solid black 3px;
+            border-radius : 3px;
+            margin-top: 10px;
+        }
 
     
 </style>
@@ -47,17 +56,19 @@
 
         require_once "config.php";
 
-        $islerim = mysqli_query($db, "SELECT * FROM isler LIMIT 10");
-        $dizi_isler = mysqli_fetch_all($islerim);
+        $islerim = mysqli_query($db, "SELECT * FROM isler LIMIT 10"); // her bir aşamada 10 tane eleman çekilecek.
+        $dizi_isler = mysqli_fetch_all($islerim); // tabloyu diziye attık.
+        $i = 0;
 
-        
+        for($i; $i<count($dizi_isler); $i++){ // databaseden çekilen veri üzerinde gezinme işlemi. Bu veriler sayfada görüntülenecek.
 
-        for($i = 0; $i<count($dizi_isler); $i++){
-            echo "<div class='is'>"."İş : "."$i"+"1"."<br>".$dizi_isler[$i][1]."</div>";
+            echo "<div class='is'>"."Is : "."$i"+"1"."<br>"."Sirket Adı ve Is : ".$dizi_isler[$i][1]."<br>"."Tecrube : ".$dizi_isler[$i][2]."<br>"."Kategori : ".$dizi_isler[$i][3]."<br>"."Konum : ".$dizi_isler[$i][4]."<br>"."Telefon : ".$dizi_isler[$i][5]."<br>"."</div>";
         }
     ?>
 
     <div class="ekle"><button type ="submit" onClick="location.href = 'is_ekle.php'">İş ekle</button></div>
+    <div class="cik"><a href="index.php">Çıkış yap</button></div>
+
 
 </body>
 </html>

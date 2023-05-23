@@ -1,33 +1,32 @@
 
 <?php
 
-require_once "config.php";
+require_once "config.php"; // bağlantı kurmak için tüm sayfalara eklendi
 
 
+if(isset($_POST["username"])){ 
 
-if(isset($_POST["username"])){
-
-    $form_username = $_POST["username"];
+    $form_username = $_POST["username"]; // username ve passwprd alındı.
     $form_password = $_POST["password"];
 
-    $hash_password = hash("sha256",$form_password);
+    $hash_password = hash("sha256",$form_password); // password şifrelendi.
 
     $quser = mysqli_query($db, "SELECT * FROM users WHERE `username` = '$form_username' AND `password` = '$hash_password' LIMIT 1");
+    // kullanıcı karşılaştırması yapıldı.
 
     $num = mysqli_num_rows($quser);
 
-    if($num == 0){
-        echo "böyle bir kullanıcı yok.";
+    if($num == 0){ // eşleşen kullanıcı yoksa buraya girer.
+        header("Location: index.php"); // ana sayfaya geri atar.
         exit();
+        
     }
     else if($num == 1){
         echo "giriş başarılı";
-        $kullanıcı = mysqli_fetch_assoc($quser);
+        $kullanıcı = mysqli_fetch_assoc($quser); // giriş başarılı ise kullanıcıdan gelen verinin kullanılması için diziye attım.
     }
     
-    header("Location: isler.php");
-
-    echo "<p>Hoş geldiniz".$form_username."<p>";
+    header("Location: isler.php"); // giriş başarılı ise işler görüntülenecek.
 }
 
 echo <<<EOF
@@ -42,7 +41,7 @@ echo <<<EOF
     <style>
 
     body{
-        background-color: #F5CC98;  
+        background-color: white;  
         display: flex;
         flex-direction: column;
     }
@@ -51,9 +50,9 @@ echo <<<EOF
         background-color:#8fe9c0;
         width: 400px;
         height: 120px;
-        border: solid white 6px;
+        border: solid black 6px;
         border-radius: 8px;
-        color: white;
+        color: black;
         font-family: 'Comic Sans MS';
         margin: auto;
         margin-top: 50px;
@@ -66,10 +65,14 @@ echo <<<EOF
     .baslik{
         margin: auto;
         margin-top: 50px;
-        color: white;
+        color: black;
         font-family: 'Comic Sans MS';
         font-size: 32px;
 
+    }
+
+    .github{
+        margin-left : 710px; 
     }
 </style>
 
@@ -86,7 +89,8 @@ echo <<<EOF
         </form>
         <p><a href="login.php">Hesabınız yok mu? Giriş yapmak için kaydolun.</a></p>
     </div>
-    
+    <br><br>
+     <a class = "github" href = "https://github.com/ibrahmaksan/php-proje-odevi" target = "_blank" >Github Linki</a>   
 </body>
 </html>
 

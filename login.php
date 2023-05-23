@@ -6,11 +6,11 @@ require_once "config.php";
 
 if(isset($_POST["username"])){
 
-    $form_username = $_POST["username"];
+    $form_username = $_POST["username"]; // formdan kullanıcı adı mail ve şifre alındı.
     $form_password = $_POST["password"];
     $form_mail = $_POST["mail"];
 
-    if(strlen($form_password)<6 || strlen($form_password)>16){
+    if(strlen($form_password)<6 || strlen($form_password)>16){ // şifre 6 karakter ile 16 karakter arasnda değilse uyarı gelecek.
 
         echo "Lütfen 6 karakter ile 16 karakter arasında bir şifre giriniz.";
         exit();
@@ -20,12 +20,14 @@ if(isset($_POST["username"])){
 
     $kayıt = mysqli_query($db, "INSERT INTO `users` (`username`,`password`,`email`) VALUES ('".$form_username."','".$hash_password."','".$form_mail."')");
 
-    if(mysqli_errno($db) != 0){
+    if(mysqli_errno($db) != 0){ // kayıt sırasında hata meydana gelirse, mesele bir kullanıcı aynı kullanıcı adıyla kaydolmak isterse hata verecek.
 
         echo "Kayıt sırasında bir hata meydana geldi.";
+        header("Location: index.php"); // kayıt aşamasında sorun olursa ana sayfaya atacak.
+        exit();
     }
 
-    header("Location: index.php");
+    header("Location: index.php"); // sorunsuz kayıt olunduğunda ana sayfaya atacak.
 }
 
 

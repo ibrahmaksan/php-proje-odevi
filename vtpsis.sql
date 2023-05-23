@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 23 May 2023, 18:56:43
+-- Üretim Zamanı: 23 May 2023, 20:22:54
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.2.4
 
@@ -32,16 +32,17 @@ CREATE TABLE `isler` (
   `name` varchar(60) NOT NULL,
   `tecrübe` int(30) NOT NULL,
   `kategori` varchar(30) NOT NULL,
-  `konum` varchar(50) NOT NULL
+  `konum` varchar(50) NOT NULL,
+  `telefon` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Tablo döküm verisi `isler`
 --
 
-INSERT INTO `isler` (`id`, `name`, `tecrübe`, `kategori`, `konum`) VALUES
-(1, 'bilgisayar muh', 5, 'muhendis', 'adana'),
-(2, 'elektrik', 4, 'muhendis', 'adana');
+INSERT INTO `isler` (`id`, `name`, `tecrübe`, `kategori`, `konum`, `telefon`) VALUES
+(3, 'Vestel - Yazılım Mühendisi', 3, 'IT Sektörü', 'Manisa', ''),
+(4, 'Vestel - Yazılım Mühendisi', 5, 'Donanım', 'Moskova', '55555555555');
 
 -- --------------------------------------------------------
 
@@ -88,13 +89,13 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `isler`
 --
 ALTER TABLE `isler`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,4 +13,4 @@
 ## Xampp Üzerinde Çalışması:  
 <br></br>
 
-Tüm dosyayı ortak bir dosyaya kaydedin. Daha sonrasında xampp üzerinde apache ve sql portlarını aktif hale getirin. Local hosta girip dosyaya tıkladığınızda ana sayfa karşınızca çıkacaktır.
+Tüm dosyayı ortak bir dosyaya kaydedin. Daha sonrasında xampp üzerinde apache ve sql portlarını aktif hale getirin. Local hosta girip dosyaya tıkladığınızda ana sayfa karşınıza çıkacaktır.
